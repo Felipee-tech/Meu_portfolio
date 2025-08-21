@@ -1,0 +1,258 @@
+/* ======== ESTILO GERAL ======== */
+body {
+  font-family: Arial, sans-serif;   /* Define a fonte padrão do site */
+  margin: 0;                        /* Remove margens padrão */
+  padding: 0;                       /* Remove espaçamento interno padrão */
+  line-height: 1.6;                 /* Espaçamento entre linhas */
+  background: url("img/fundo2.jpg") no-repeat center center fixed; /* Fundo com imagem fixa */
+  background-size: cover;           /* Faz a imagem cobrir a tela inteira */
+  color: #fff;                      /* Texto branco */
+}
+
+body::before {
+  content: "";                      /* Cria uma camada extra */
+  position: fixed;                  /* Fixa no fundo da tela */
+  top: 0; left: 0;                  /* Posição inicial */
+  width: 100%; height: 100%;        /* Ocupa toda a tela */
+  background: rgba(0,0,0,0.6);      /* Sobreposição preta transparente */
+  z-index: -1;                      /* Fica atrás do conteúdo */
+}
+
+html {
+  scroll-behavior: smooth;          /* Scroll suave ao clicar nos links */
+}
+
+/* ======== PERFIL (foto + nome) ======== */
+.Perfil {
+  display: flex;                    /* Coloca foto e nome lado a lado */
+  align-items: center;              /* Alinha verticalmente */
+  gap: 10px;                        /* Espaço entre a foto e o nome */
+  margin-left: 30px;
+}
+
+.Perfil img {
+  width: 50px;                      /* Largura da foto */
+  height: 50px;                     /* Altura da foto */
+  border-radius: 50%;               /* Foto redonda */
+  object-fit: cover;                /* Mantém proporção da imagem */
+  border: 2px solid white;          /* Borda branca em volta da foto */
+}
+
+/* ======== CABEÇALHO (NAVBAR FIXA) ======== */
+#navbar {
+  position: fixed;                  /* Cabeçalho fixo no topo */
+  top: 0; left: 0;                  /* Começa no canto superior esquerdo */
+  width: 100%;                      /* Ocupa a largura toda */
+  background: #000;                 /* Fundo preto */
+  color: white;                     /* Texto branco */
+  display: grid;                    /* Layout em grid */
+  grid-template-columns: 1fr auto 1fr; /* 3 colunas: esquerda, meio, direita */
+  align-items: center;              /* Alinha verticalmente */
+  padding: 8px 0px;                /* Espaçamento interno */
+  height: 100px;                    /* Altura inicial */
+  transition: all 0.3s ease;        /* Animação suave em mudanças */
+  z-index: 1000;                    /* Fica acima de outros elementos */
+}
+
+#navbar.scrolled {
+  background: rgba(0,0,0,0.85);     /* Fundo semi-transparente ao rolar */
+  height: 70px;                     /* Navbar fica menor */
+  padding: 5px 15px;                /* Menos espaçamento */
+  backdrop-filter: blur(8px);       /* Aplica desfoque de fundo */
+}
+
+/* ======== SOCIAL (ÍCONES NO MEIO) ======== */
+.social {
+  display: flex;                    /* Ícones lado a lado */
+  justify-content: center;          /* Centralizados no meio */
+  gap: 50px;                        /* Espaço entre eles */
+}
+
+.social a {
+  color: white;                     /* Ícones brancos */
+  font-size: 40px;                  /* Tamanho dos ícones */
+  transition: color 0.3s, transform 0.3s; /* Animação ao passar mouse */
+}
+
+.social a:hover {
+  color: #ff6600;                   /* Cor laranja no hover */
+  transform: scale(1.2);            /* Ícones aumentam */
+}
+
+/* ======== MENU (DIREITA) ======== */
+.Menu {
+  list-style: none;                 /* Remove bolinhas da lista */
+  display: flex;                    /* Itens lado a lado */
+  justify-content: flex-end;        /* Alinha pra direita */
+  gap: 40px;                        /* Espaço entre os itens */
+  margin: 0;                        /* Remove margens padrão */
+  padding: 0;                       /* Remove padding padrão */
+  margin-right: 30px;               /* <<--- só afasta o menu */
+}
+
+.Menu a {
+  color: white;                     /* Links brancos */
+  text-decoration: none;            /* Sem sublinhado */
+  font-weight: bold;                /* Negrito */
+  font-size: 18px;                  /* Tamanho do texto */
+  transition: color 0.3s, transform 0.3s; /* Efeito suave no hover */
+}
+
+.Menu a:hover {
+  color: #ff6600;                   /* Laranja no hover */
+  transform: scale(1.1);            /* Aumenta levemente */
+}
+
+/* ======== HERO ======== */
+#hero {
+  height: 100vh;                    /* Ocupa toda a altura da tela */
+  background-attachment: fixed;     /* Fundo fixo ao rolar */
+  display: flex;                    /* Alinha elementos no centro */
+  align-items: center;              /* Verticalmente */
+  justify-content: center;          /* Horizontalmente */
+  text-align: center;               /* Texto centralizado */
+  position: relative;               /* Para sobreposição */
+  color: white;                     /* Texto branco */
+}
+
+#hero h1, #hero p {
+  color: #fff;                      /* Garante que o texto seja branco */
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.7); /* Sombra pro texto */
+}
+
+#hero .overlay {
+  position: relative;               /* Camada acima do fundo */
+  z-index: 2;                       /* Garante que o texto fique na frente */
+}
+
+/* ======== SEÇÕES ======== */
+section {
+  padding: 40px 20px;               /* Espaçamento interno */
+  max-width: 900px;                 /* Largura máxima */
+  margin: auto;                     /* Centraliza */
+  height: 100vh;                    /* Cada seção ocupa a tela toda */
+  width: 100%;
+  display: flex;                    /* Conteúdo centralizado */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  scroll-snap-align: start;         /* Faz scroll parar certinho */
+}
+
+/* ======== CARTÕES DE PROJETOS ======== */
+.cards {
+  display: flex;                    /* Cards lado a lado */
+  gap: 20px;                        /* Espaço entre eles */
+  flex-wrap: wrap;                  /* Quebram em linha de baixo no mobile */
+}
+
+.card {
+  background: white;                /* Fundo branco */
+  padding: 20px;                    /* Espaço interno */
+  border-radius: 10px;              /* Cantos arredondados */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra leve */
+  flex: 1 1 300px;                  /* Ocupa espaço flexível */
+}
+
+.card a {
+  display: inline-block;            /* Link ocupa só o necessário */
+  margin-top: 10px;                 /* Espaço em cima */
+  color: #007BFF;                   /* Azul */
+  text-decoration: none;            /* Sem sublinhado */
+}
+
+/* ======== RODAPÉ ======== */
+footer {
+  text-align: center;               /* Texto centralizado */
+  background: #222;                 /* Fundo cinza escuro */
+  color: white;                     /* Texto branco */
+  padding: 10px;                    /* Espaçamento interno */
+}
+
+/* Seleciona só o ícone do WhatsApp */
+.fab.fa-whatsapp {
+    color: #25D366;       /* Cor verde do WhatsApp */
+    font-size: 40px;       /* Tamanho do ícone */
+    margin-left: 10px;     /* Espaço à esquerda, se quiser */
+    transition: transform 0.3s, color 0.3s; /* Animação suave */
+}
+
+/* Efeito ao passar o mouse */
+.fab.fa-whatsapp:hover {
+    transform: scale(1.2); /* Aumenta levemente */
+    color: #128C7E;        /* Tom de verde mais escuro */
+}
+
+
+/* ====== FONTES ====== */
+#hero h1 {
+  font-size: 3.5rem;                /* Fonte grande */
+  font-weight: bold;                /* Negrito */
+  text-align: center;               /* Centralizado */
+  margin-bottom: 15px;              /* Espaço abaixo */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7); /* Sombra */
+  margin-top: -30px;                /* Sobe um pouco o título */
+}
+
+#hero p {
+  font-size: 1.8rem;                /* Texto médio */
+  font-weight: 400;                 /* Peso normal */
+  text-align: center;               /* Centralizado */
+  margin-top: 0;                    /* Remove margem superior */
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6); /* Sombra leve */
+}
+
+section h2 {
+  font-size: 2.5rem;                /* Fonte grande */
+  font-weight: bold;                /* Negrito */
+  text-align: center;               /* Centralizado */
+  margin-bottom: 20px;              /* Espaço abaixo */
+  color: #fdfcfc;                   /* Quase branco */
+  text-transform: uppercase;        /* Tudo em maiúsculo */
+  letter-spacing: 2px;              /* Espaço entre letras */
+}
+
+section p {
+  font-size: 1.2rem;                /* Tamanho médio */
+  font-weight: 300;                 /* Bem leve */
+  line-height: 1.8;                 /* Espaçamento entre linhas */
+  text-align: justify;              /* Justificado */
+  max-width: 800px;                 /* Limite de largura */
+  margin: 0 auto 30px;              /* Centralizado e espaço abaixo */
+  color: #e2e2e2;                   /* Cinza claro */
+}
+
+a {
+  color: #00aced;                   /* Azul padrão */
+  text-decoration: none;            /* Sem sublinhado */
+  font-weight: bold;                /* Negrito */
+}
+
+a:hover {
+  color: #1da1f2;                   /* Azul claro no hover */
+  text-decoration: underline;       /* Sublinhado ao passar mouse */
+}
+
+/* ====== RESPONSIVIDADE ====== */
+@media (max-width: 768px) {          /* Para telas menores que 768px */
+  #hero h1 { font-size: 2.5rem; }    /* Diminui título */
+  #hero p { font-size: 1.2rem; }     /* Diminui subtítulo */
+  section h2 { font-size: 2rem; }    /* Diminui títulos das seções */
+  section p { font-size: 1rem; }     /* Texto menor */
+}
+
+/*---------botão de download-------*/
+.btn-download {
+  display: inline-block;
+  padding: 10px 20px;        /* Espaçamento interno */
+  background-color: #25D366; /* Cor de fundo (pode mudar) */
+  color: white;              /* Cor do texto */
+  font-weight: bold;
+  text-decoration: none;     /* Remove sublinhado */
+  border-radius: 8px;        /* Bordas arredondadas */
+  transition: background-color 0.3s;
+}
+
+.btn-download:hover {
+  background-color: #128C7E; /* Cor quando passar o mouse */
+}
